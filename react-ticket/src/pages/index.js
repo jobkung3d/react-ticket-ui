@@ -4,6 +4,8 @@ import EnhancedTable from '../components/Tables'
 import Sidebar from '../components/Sidebar'
 import Grid from '@material-ui/core/Grid'
 import axios from 'axios'
+import Actionbar from '../components/Actionbar'
+//import Topbar from '../components/Topbar'
 
 class Home extends Component {
 
@@ -12,7 +14,7 @@ class Home extends Component {
     }
 
     componentDidMount(){
-        axios.get(`http://localhost:3000/posts`)
+        axios.get(`http://localhost:3004/posts`)
         .then(res => {
           const persons = res.data;
           this.setState({ persons });
@@ -24,10 +26,11 @@ class Home extends Component {
         return (
             <MiniDrawer>
                 <Grid container spacing={2}>
-                    <Grid item xs={9}>
-                      <EnhancedTable persons={persons} />
+                    <Grid item sm={10}>
+                        <Actionbar />  
+                        <EnhancedTable persons={persons} />
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item sm={2}>
                         <Sidebar />
                     </Grid>
                 </Grid>

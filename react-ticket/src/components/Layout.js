@@ -18,6 +18,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Profile from './Profile';
+import Grid from '@material-ui/core/Grid'
+import { Search, Notifications, Settings  } from '@material-ui/icons';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -83,6 +86,9 @@ const useStyles = makeStyles(theme => ({
   },
   svgThemeBlack: {
     color: 'white'
+  },
+  textRight:{
+    textAlign: 'right'
   }
 }));
 
@@ -122,9 +128,20 @@ export default function MiniDrawer(props) {
           >
           <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Mini variant drawer
-          </Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <Typography variant="h6" noWrap style={{paddingTop:12}}>
+                IT CONSOLE
+              </Typography>
+            </Grid>
+            <Grid item xs={6} style={{textAlgin:'right'}}>
+                <div className={classes.textRight}>
+                  <IconButton><Search fontSize="large" style={{verticalAlign: 'bottom', color: '#ffffff'}} /></IconButton>
+                  <IconButton><Notifications fontSize="large" style={{verticalAlign: 'bottom', color: '#ffffff'}} /></IconButton>
+                  <IconButton><Settings fontSize="large" style={{verticalAlign: 'bottom', color: '#ffffff'}} /></IconButton>
+                </div>
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -141,11 +158,17 @@ export default function MiniDrawer(props) {
         }}
         open={open}
       >
-         <div style={{textAlign: 'center'}}>hello</div>
         <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
+          <Grid container spacing={2}>
+            <Grid item xs={9} style={{textAlign: 'center'}}>
+              <h3 style={{marginBottom:'0px'}}>Support Ticket V.1</h3>
+            </Grid>
+            <Grid item xs={3}>
+              <IconButton onClick={handleDrawerClose}>
+                {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+              </IconButton>
+            </Grid>
+          </Grid>
         </div>
         <Divider />
             <Profile />

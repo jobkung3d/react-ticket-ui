@@ -6,6 +6,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CustomizedSelects from '../common/select';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid'
+import MaterialUIPickers from '../common/datepicker'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 const useStyles = makeStyles(
     createStyles({
@@ -18,11 +22,19 @@ const useStyles = makeStyles(
         transform: 'scale(0.8)',
       },
       title: {
-        fontSize: 14,
+        fontSize: 18,
+        fontWeight: 'bold'
       },
       pos: {
         marginBottom: 12,
       },
+      titleSmall:{
+        fontSize: 16,
+        marginTop: 10
+      },
+      gridFullWith:{
+        width: '100%',
+      }
     }),
   );
   
@@ -32,26 +44,46 @@ const useStyles = makeStyles(
     return (
       <Card className={classes.card}>
         <CardContent>
-          <Typography className={classes.title} color="textSecondary" gutterBottom>
-             All Filters
+          <Typography component="p" className={classes.title} gutterBottom>
+           <ChevronRightIcon style={{verticalAlign:'middle'}} /> All Filters
           </Typography>
-          <Typography variant="h5" component="h2">
-            <CustomizedSelects/>
-            <CustomizedSelects/>
+          <Divider />
+          <Typography component="div" className={classes.titleSmall}>
+            Basic Filters       
           </Typography>
-          <Typography className={classes.pos} color="textSecondary">
-            adjective
+          <Divider /> 
+          <Grid container spacing={1}>
+            <Grid item xs={6}><CustomizedSelects/></Grid>
+            <Grid item xs={6}><CustomizedSelects/></Grid>
+            <Grid item xs={6}><CustomizedSelects/></Grid>
+            <Grid item xs={6}><CustomizedSelects/></Grid>
+            <Grid item xs={12}><CustomizedSelects/></Grid>
+          </Grid>
+          <Typography component="div" className={classes.titleSmall}>
+            Date Filters       
           </Typography>
-          <Typography variant="body2" component="p">
-            well meaning and kindly.
-            <br />
-            {'"a benevolent smile"'}
+          <Divider /> 
+          <Grid container spacing={0}>
+            <Grid item xs={12} ><MaterialUIPickers label="Submit Date" className={classes.gridFullWith} /></Grid>
+            <Grid item xs={12} ><MaterialUIPickers label="End Date" className={classes.gridFullWith} /></Grid>
+          </Grid>
+          <Typography component="div" className={classes.titleSmall}>
+            Advance Filters       
           </Typography>
+          <Divider /> 
+          <Grid container spacing={1}>
+            <Grid item xs={6}><CustomizedSelects/></Grid>
+            <Grid item xs={6}><CustomizedSelects/></Grid>
+            <Grid item xs={6}><CustomizedSelects/></Grid>
+            <Grid item xs={6}><CustomizedSelects/></Grid>
+            <Grid item xs={12} style={{margin:'auto'}}><CustomizedSelects/></Grid>
+          </Grid>
         </CardContent>
         <CardActions>
             <Button variant="contained" color="primary" className={classes.button}>
                  Submit
             </Button>
+            <Button className={classes.button}>Cancel</Button>
         </CardActions>
       </Card>
     );
