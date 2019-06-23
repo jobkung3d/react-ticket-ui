@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import MiniDrawer from '../components/Layout'
 import EnhancedTable from '../components/Tables'
+import Sidebar from '../components/Sidebar'
+import Grid from '@material-ui/core/Grid'
 import axios from 'axios'
 
 class Home extends Component {
 
-    constructor(props){
-        super(props);
-        this.state = {
-            persons : ''
-        }
+    state = {
+        persons : []
     }
 
     componentDidMount(){
@@ -24,7 +23,14 @@ class Home extends Component {
         const { persons } = this.state;
         return (
             <MiniDrawer>
-                <EnhancedTable persons={persons} />
+                <Grid container spacing={2}>
+                    <Grid item xs={9}>
+                      <EnhancedTable persons={persons} />
+                    </Grid>
+                    <Grid item xs={3}>
+                        <Sidebar />
+                    </Grid>
+                </Grid>
             </MiniDrawer>
         )
     }
